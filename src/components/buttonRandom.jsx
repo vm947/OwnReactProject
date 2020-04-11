@@ -7,7 +7,7 @@ const ButtonRandom = (props) => {
       className={`btn btn-${props.passRandomActive} m-2`}
       onClick={() => props.onHandleRandom()}
     >
-      Subtract
+      Random
     </button>
   );
 };

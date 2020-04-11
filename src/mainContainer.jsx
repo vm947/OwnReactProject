@@ -7,7 +7,7 @@ import ButtonRandom from "./components/buttonRandom";
 class MainContainer extends Component {
   state = {
     number: 0,
-    phrase: 'I love ',
+    phrase: "I love ",
     successAdd: "warning",
     successSubtract: "warning",
     successRandom: "warning",
@@ -18,7 +18,13 @@ class MainContainer extends Component {
     newNumber++;
     const newAddColor =
       this.state.successAdd === "warning" ? "success" : "warning";
-    this.setState({ number: newNumber, successAdd: newAddColor });
+
+    const newPhrase = "I feel lucky with number ";
+    this.setState({
+      number: newNumber,
+      successAdd: newAddColor,
+      phrase: newPhrase,
+    });
   };
 
   handleDecrement = () => {
@@ -26,22 +32,58 @@ class MainContainer extends Component {
     newNumber--;
     const newColorSubtract =
       this.state.successSubtract === "warning" ? "success" : "warning";
-    this.setState({ number: newNumber, successSubtract: newColorSubtract });
+    const newPhrase = "I am thinking about number ";
+    this.setState({
+      number: newNumber,
+      successSubtract: newColorSubtract,
+      phrase: newPhrase,
+    });
   };
 
   handleRandom = () => {
-    let randomNumber = Math.floor(Math.random() * 100);
+    const randomNumber = Math.floor(Math.random() * 100);
+    let randomPhrases = [
+      "I hate number ",
+      "I adore number ",
+      "I cherish number ",
+      "I dream about number ",
+      "I don't care about number ",
+      "You are thinking about number ",
+      "Your shoe size is ",
+      "You have these many dogs: ",
+      "I eat these many cookies every day: ",
+      "I have slept these many hours last night: ",
+      "I bet you can't count to ",
+      "Why are your thinking about number ",
+      "Your AREN'T thinking about number ",
+      "In my heart you are number "
+    ];
+
+    const randomIndex = Math.floor(Math.random() * randomPhrases.length);
+
     const newColorRandom =
       this.state.successRandom === "warning" ? "success" : "warning";
-    this.setState({ number: randomNumber, successRandom: newColorRandom });
+
+    const newRandomPhrase = randomPhrases[randomIndex];
+    this.setState({
+      number: randomNumber,
+      successRandom: newColorRandom,
+      phrase: newRandomPhrase,
+    });
   };
 
   render() {
-    const { number, successAdd, successSubtract, successRandom, phrase } = this.state;
+    const {
+      number,
+      successAdd,
+      successSubtract,
+      successRandom,
+      phrase,
+    } = this.state;
 
     return (
       <div>
-        <HelloWorld passNum={number} passPhrase ={phrase}/>
+        <HelloWorld passNum={number} passPhrase={phrase} />
         <div className="flexContainer">
           <ButtonAdd
             onHandleIncrement={this.handleIncrement}
